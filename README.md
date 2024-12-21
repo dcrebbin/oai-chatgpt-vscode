@@ -1,0 +1,3 @@
+- Connect ChatGPT to Visual Studio Code by clicking the Visual Studio Code icon in the ChatGPT chat bar or by pressing Option + Shift + 1 while in Visual Studio Code.
+- Select text to focus ChatGPT on specific parts of your code.
+- ChatGPT will only access code in active editor panes. To work with multiple files at the same time, open them in split editors.

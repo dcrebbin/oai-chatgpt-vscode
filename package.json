@@ -1,0 +1,50 @@
+{
+  "name": "openai-chatgpt-adhoc",
+  "displayName": "ChatGPT – Work with VS Code on macOS",
+  "description": "This extension enables the ChatGPT application to read files you have open in Visual Studio Code. It does not introduce any capabilities directly to Visual Studio Code.",
+  "publisher": "openai",
+  "version": "0.0.1731981761",
+  "icon": "images/oai_icon.png",
+  "engines": {
+    "vscode": "^1.92.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": []
+  },
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": "limited",
+      "description": "The workspace must be trusted for ChatGPT to interact with content in your Visual Studio Code workspace."
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile && if [ \"$OBFUSCATE_EXTENSION\" = \"true\" ]; then javascript-obfuscator out --output out; fi",
+    "compile": "npx tsc -p ./",
+    "watch": "npx tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "npx eslint src",
+    "test": "npx vscode-test",
+    "package": "npx vsce package --allow-missing-repository",
+    "publish": "OBFUSCATE_EXTENSION=true npx vsce publish"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.7",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.92.0",
+    "@typescript-eslint/eslint-plugin": "^8.3.0",
+    "@typescript-eslint/parser": "^8.3.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "@vscode/vsce": "^3.1.0",
+    "eslint": "^9.9.1",
+    "javascript-obfuscator": "^4.1.1",
+    "typescript": "^5.5.4"
+  }
+}
