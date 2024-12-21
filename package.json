@@ -4,7 +4,7 @@
   "description": "This extension enables the ChatGPT application to read files you have open in Visual Studio Code. It does not introduce any capabilities directly to Visual Studio Code.",
   "publisher": "openai",
   "version": "0.0.1731981761",
-  "icon": "images/oai_icon.png",
+  "icon": "public/images/oai_icon.png",
   "engines": {
     "vscode": "^1.92.0"
   },
@@ -15,6 +15,7 @@
     "onStartupFinished"
   ],
   "main": "./src/extension.js",
+  "type": "commonjs",
   "contributes": {
     "commands": []
   },
@@ -25,14 +26,14 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "bun run compile && if [ \"$OBFUSCATE_EXTENSION\" = \"true\" ]; then javascript-obfuscator out --output out; fi",
-    "compile": "bun run compile && bun run lint",
-    "watch": "bun run watch",
-    "pretest": "bun run compile && bun run lint",
-    "lint": "bun run lint",
-    "test": "bun run test",
-    "package": "bun run package",
-    "publish": "OBFUSCATE_EXTENSION=true bun run publish"
+    "vscode:prepublish": "npm run compile && if [ \"$OBFUSCATE_EXTENSION\" = \"true\" ]; then javascript-obfuscator out --output out; fi",
+    "compile": "npx tsc -p ./",
+    "watch": "npx tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "npx eslint src",
+    "test": "npx vscode-test",
+    "package": "npx vsce package --allow-missing-repository",
+    "publish": "OBFUSCATE_EXTENSION=true npx vsce publish"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.7",
