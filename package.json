@@ -14,7 +14,7 @@
   "activationEvents": [
     "onStartupFinished"
   ],
-  "main": "./out/extension.js",
+  "main": "./src/extension.js",
   "contributes": {
     "commands": []
   },
@@ -25,14 +25,14 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile && if [ \"$OBFUSCATE_EXTENSION\" = \"true\" ]; then javascript-obfuscator out --output out; fi",
-    "compile": "npx tsc -p ./",
-    "watch": "npx tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
-    "lint": "npx eslint src",
-    "test": "npx vscode-test",
-    "package": "npx vsce package --allow-missing-repository",
-    "publish": "OBFUSCATE_EXTENSION=true npx vsce publish"
+    "vscode:prepublish": "bun run compile && if [ \"$OBFUSCATE_EXTENSION\" = \"true\" ]; then javascript-obfuscator out --output out; fi",
+    "compile": "bun run compile && bun run lint",
+    "watch": "bun run watch",
+    "pretest": "bun run compile && bun run lint",
+    "lint": "bun run lint",
+    "test": "bun run test",
+    "package": "bun run package",
+    "publish": "OBFUSCATE_EXTENSION=true bun run publish"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.7",
